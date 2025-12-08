@@ -21,4 +21,17 @@
 @import "tailwindcss";
 @import "flowbite";
 
+@layer base{
+  .navlink-active{
+    @apply text-blue-500;
+  }
+
+  .navlink-inactive{
+    @apply text-[beige] dark:text-white
+  }
+  .navlink-inactive:hover{
+    @apply text-blue-500 dark:text-blue-500;
+  }
+}
+
 

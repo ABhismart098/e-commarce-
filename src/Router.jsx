@@ -6,6 +6,8 @@ import Login from "./Pages/auth/Login";
 import Register from "./Pages/auth/Register";
 import Cart from "./Pages/Cart";
 import Error from "./Error";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />
+      },
+      {
+        path: "about",
+        element: <About />
+      },
+      {
+        path: "contact",
+        element: <Contact />
       },
       {
         path: "cart",
