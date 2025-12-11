@@ -30,7 +30,7 @@
     @apply text-[beige] dark:text-white
   }
   .navlink-inactive:hover{
-    @apply text-blue-500 dark:text-blue-500;
+    @apply text-blue-500 dark:text-blue-500; 
   }
 }
 

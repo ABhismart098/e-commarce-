@@ -1,8 +1,13 @@
 import React from 'react'
+import HomeSlider from '../Components/HomeSlider'
+import ProductCard from '../Components/ProductCard'
 
 const LandingPage = () => {
   return (
-    <div>LandingPage</div>
+    <>
+    <HomeSlider />
+    <ProductCard />
+    </>
   )
 }
 

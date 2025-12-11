@@ -8,6 +8,8 @@ import Cart from "./Pages/Cart";
 import Error from "./Error";
 import About from "./Pages/About";
 import Contact from "./Pages/Contact";
+import Order from "./Pages/Order";
+import WishList from "./Pages/WishList";
 
 const router = createBrowserRouter([
   {
@@ -27,16 +29,20 @@ const router = createBrowserRouter([
         element: <Register />
       },
       {
-        path: "about",
-        element: <About />
-      },
-      {
         path: "contact",
         element: <Contact />
       },
       {
         path: "cart",
         element: <Cart />
+      },
+      {
+        path: "order",
+        element: <Order />
+      },
+      {
+        path: "wishlist",
+        element: <WishList />
       },
       {
         path: "*",
