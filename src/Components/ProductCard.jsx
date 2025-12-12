@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
                  hover:shadow-2xl hover:-translate-y-2 hover:bg-white"
     >
       {/* Image */}
-      <a href="#">
+      <div className="product_image">
         <img
           className="rounded-xl mb-6 h-52 transition-transform duration-500 ease-out 
                      hover:scale-105 hover:rotate-1"
@@ -20,7 +20,8 @@ const ProductCard = ({ product }) => {
           alt={product?.description}
           title={product?.description}
         />
-      </a>
+        </div>
+   
 
       <div>
         {/* Dynamic Rating */}
@@ -51,14 +52,16 @@ const ProductCard = ({ product }) => {
         </div>
 
        {/* Title */}
-<a href="#">
+
+<div className="product-title">
   <h5 className="text-xl text-gray-900 font-semibold tracking-tight 
                  transition-colors duration-300 hover:text-indigo-600">
     {product?.title?.length > 15
       ? product.title.slice(0, 15) + "..."
       : product?.title || "Apple Watch Series 7 GPS, Aluminium Case, Starlight"}
   </h5>
-</a>
+  </div>
+
 
 
         {/* Price + Button */}
