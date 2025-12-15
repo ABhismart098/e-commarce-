@@ -10,6 +10,7 @@ import About from "./Pages/About";
 import Contact from "./Pages/Contact";
 import Order from "./Pages/Order";
 import WishList from "./Pages/WishList";
+import LearnUI from "./Components/LearnUI";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "contact",
         element: <Contact />
+      },
+      {
+        path: "learnui",
+        element: <LearnUI/>
       },
       {
         path: "cart",
