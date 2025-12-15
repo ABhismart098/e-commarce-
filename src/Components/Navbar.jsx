@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router'
 
+
+
 const Navbar = () => {
+  const [isLoggedIn, setLoggedIn ]= useState(false);
   return (
     <>
 
@@ -11,41 +14,18 @@ const Navbar = () => {
             <img src="vite.svg" className="h-7" alt="Flowbite Logo" />
             <span className="self-center dark: text-white text-xl text-heading font-semibold whitespace-nowrap">E-Commarce</span>
           </NavLink>
-          <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <button type="button" className="flex text-sm bg-neutral-primary rounded-full md:me-0 focus:ring-4 focus:ring-neutral-tertiary" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-              <span className="sr-only">Open user menu</span>
-              <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo" />
-            </button>
-            {/* <!-- Dropdown menu --> */}
-            <div className="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44" id="user-dropdown">
-              <div className="px-4 py-3 text-sm border-b border-default">
-                <span className="block text-heading font-medium">Joseph McFall</span>
-                <span className="block text-body truncate">name@flowbite.com</span>
-              </div>
-              <ul className="p-2 text-sm text-body font-medium" aria-labelledby="user-menu-button">
-                <li>
-                  <NavLink
-                    to="/" className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Dashboard</NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/" className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Settings</NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/" className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Earnings</NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/" className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">Sign out</NavLink>
-                </li>
-              </ul>
+
+          {
+            isLoggedIn ?<UserMenu /> : <>
+            <div className="auth flex gap-2 md:order-2">
+              <button className="btn-primary">Login</button>
+              <button className="btn-sucess">Register</button>
+           
             </div>
-            <button data-collapse-toggle="navbar-user" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary" aria-controls="navbar-user" aria-expanded="false">
-              <span className="sr-only">Open main menu</span>
-              <svg className="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="M5 7h14M5 12h14M5 17h14" /></svg>
-            </button>
-          </div>
+            
+            </> 
+          }
+         
           <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
             <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
               <li>
@@ -55,19 +35,22 @@ const Navbar = () => {
                 }>Home</NavLink>
               </li>
               <li>
-                <NavLink to="/About" className={({ isActive }) =>
+                <NavLink to="/order" className={({ isActive }) =>
                   `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
                     isActive ? "navlink-active" : "navlink-inactive"
                   }`
-                }>About</NavLink>
+                }>Order</NavLink>
+
               </li>
               <li>
-                <NavLink to="/register" className={({ isActive }) =>
+
+              <NavLink to="/wishlist" className={({ isActive }) =>
                   `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
                     isActive ? "navlink-active" : "navlink-inactive"
                   }`
-                }>Register</NavLink>
-              </li>
+                }>WishList</NavLink>
+                </li>
+              
               <li>
                 <NavLink to="/cart" className={({ isActive }) =>
                   `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
@@ -82,13 +65,7 @@ const Navbar = () => {
                   }`
                 }>Contact</NavLink>
               </li>
-              <li>
-                <NavLink to="/Login" className={({ isActive }) =>
-                  `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
-                    isActive ? "navlink-active" : "navlink-inactive"
-                  }`
-                }>Login</NavLink>
-              </li>
+              
             </ul>
           </div>
         </div>
@@ -100,3 +77,97 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+const UserMenu = () => {
+  return (
+    <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <button
+        type="button"
+        className="flex text-sm bg-neutral-primary rounded-full md:me-0 focus:ring-4 focus:ring-neutral-tertiary"
+        id="user-menu-button"
+        aria-expanded="false"
+        data-dropdown-toggle="user-dropdown"
+        data-dropdown-placement="bottom"
+      >
+        <span className="sr-only">Open user menu</span>
+        <img
+          className="w-8 h-8 rounded-full"
+          src="https://media.licdn.com/dms/image/v2/D5603AQF6Jg0zTVWBzQ/profile-displayphoto-scale_200_200/B56ZjazRsiH8Ac-/0/1756017532600?e=2147483647&v=beta&t=ZjjwETYcdYZ464B7MlBjEaAzoNvkmWwalikR8gYsnUE"
+          alt="user photo"
+        />
+      </button>
+      {/* <!-- Dropdown menu --> */}
+      <div
+        className="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
+        id="user-dropdown"
+      >
+        <div className="px-4 py-3 text-sm border-b border-default">
+          <span className="block text-heading font-medium">Joseph McFall</span>
+          <span className="block text-body truncate">name@flowbite.com</span>
+        </div>
+        <ul
+          className="p-2 text-sm text-body font-medium"
+          aria-labelledby="user-menu-button"
+        >
+          <li>
+            <NavLink
+              to="/"
+              className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/"
+              className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+            >
+              Settings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/"
+              className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+            >
+              Earnings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/"
+              className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
+            >
+              Sign out
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      <button
+        data-collapse-toggle="navbar-user"
+        type="button"
+        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary"
+        aria-controls="navbar-user"
+        aria-expanded="false"
+      >
+        <span className="sr-only">Open main menu</span>
+        <svg
+          className="w-6 h-6"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2"
+            d="M5 7h14M5 12h14M5 17h14"
+          />
+        </svg>
+      </button>
+    </div>
+  );
+};

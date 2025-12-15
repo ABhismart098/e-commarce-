@@ -32,7 +32,7 @@ const ProductCard = ({ product }) => {
                 key={i}
                 className={`w-5 h-5 transition-all duration-300 drop-shadow-sm
                   ${
-                    i < rating
+                    i < Math.round(rating)
                       ? "text-yellow-400 scale-110"
                       : "text-gray-300 scale-90"
                   }`}
