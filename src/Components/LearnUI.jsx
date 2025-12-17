@@ -10,14 +10,16 @@ const LearnUI = () => {
     //     console.log("component Re-render")
     // }, [])
 
-    useEffect(() =>{
-      setInterval(()=>{
-        let date = new Date();
-        console.log(date);
-        setdate(date);
+    useEffect(() => {
+  const clockID = setInterval(() => {
+    const newDate = new Date();
+    console.log(newDate);
+    setdate(newDate);
+  }, 1000);
 
-      },1000)
-    },[])
+  return () => clearInterval(clockID);
+}, []);
+
   return (
     <div className="my-12 text-center">
       <h1 className="text-3xl">{date.toString()}</h1>
