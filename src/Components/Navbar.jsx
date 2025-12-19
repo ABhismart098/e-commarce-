@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router'
+import { Link, NavLink } from 'react-router'
 
 
 
@@ -18,8 +18,8 @@ const Navbar = () => {
           {
             isLoggedIn ?<UserMenu /> : <>
             <div className="auth flex gap-2 md:order-2">
-              <button className="btn-primary">Login</button>
-              <button className="btn-sucess">Register</button>
+              <Link to="/login" className="btn-primary">Login</Link>
+              <Link to="/register" className="btn-sucess">Register</Link>
            
             </div>
             
