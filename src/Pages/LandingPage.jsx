@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import HomeSlider from '../Components/HomeSlider'
 import ProductCard from '../Components/ProductCard'
 import axios from 'axios';
+import { ToastContainer } from 'react-toastify';
 
 
 // const products = [
@@ -267,6 +268,7 @@ const LandingPage = () => {
   return (
        <>
       {/* HERO SLIDER */}
+      
       <HomeSlider />
 
       {/* {
