@@ -17,7 +17,7 @@ const Navbar = () => {
             eCommerce
           </span>
         </Link>
-        {user.email ? (
+        {user?.email ? (
           <UserMenu />
         ) : (
           <>

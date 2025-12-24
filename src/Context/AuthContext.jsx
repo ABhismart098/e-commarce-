@@ -12,7 +12,7 @@ const AuthContextWrapper = ({ children }) => {
 
     setUser({
       name: "Abhishek",
-      image: "/image",
+      image: "image.png",
       email: safeUser.email,
       ...safeUser,
     });
