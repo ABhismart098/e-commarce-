@@ -1,86 +1,116 @@
-import React, { useState } from 'react'
-import { Link, NavLink } from 'react-router'
-
-
+import { Link, NavLink } from "react-router";
+import useAuth from "../Hooks/useAuth";
 
 const Navbar = () => {
-  const [isLoggedIn, setLoggedIn ]= useState(false);
+  const { user } = useAuth();
+
   return (
-    <>
-
-      <nav className="bg-gray-900 sticky w-full z-20 top-0 start-0 border-b border-default">
-        <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <NavLink href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="vite.svg" className="h-7" alt="Flowbite Logo" />
-            <span className="self-center dark: text-white text-xl text-heading font-semibold whitespace-nowrap">E-Commarce</span>
-          </NavLink>
-
-          {
-            isLoggedIn ?<UserMenu /> : <>
-            <div className="auth flex gap-2 md:order-2">
-              <Link to="/login" className="btn-primary">Login</Link>
-              <Link to="/register" className="btn-sucess">Register</Link>
-           
+    <nav className="bg-gray-900 sticky w-full z-20 top-0 start-0 border-b border-default">
+      {console.log(user)}
+      <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <Link
+          to="/useeffect"
+          className="flex items-center space-x-3 rtl:space-x-reverse"
+        >
+          <img src="vite.svg" className="h-7" alt="Flowbite Logo" />
+          <span className="self-center dark:text-white text-xl text-heading font-semibold whitespace-nowrap">
+            eCommerce
+          </span>
+        </Link>
+        {user.email ? (
+          <UserMenu />
+        ) : (
+          <>
+            <div className="auth md:order-2">
+              <Link to={"/login"} className="btn btn-primary">
+                login
+              </Link>
+              <Link to={"/register"} className="btn btn-success ml-2">
+                register
+              </Link>
             </div>
-            
-            </> 
-          }
-         
-          <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-            <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
-              <li>
-                <NavLink to="/" className={({ isActive }) =>
-                  `block py-2 px-3 md:p-0 md:bg-transparent rounded ${isActive ? "navlink-active" : "navlink-inactive"
-                  }`
-                }>Home</NavLink>
-              </li>
-              <li>
-                <NavLink to="/order" className={({ isActive }) =>
+          </>
+        )}
+        <div
+          className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+          id="navbar-user"
+        >
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
                   `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
                     isActive ? "navlink-active" : "navlink-inactive"
                   }`
-                }>Order</NavLink>
+                }
+                aria-current="page"
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/wishlist"
+                className={({ isActive }) =>
+                  `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
+                    isActive ? "navlink-active" : "navlink-inactive"
+                  }`
+                }
+              >
+                WishList
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/orders"
+                className={({ isActive }) =>
+                  `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
+                    isActive ? "navlink-active" : "navlink-inactive"
+                  }`
+                }
+              >
+                Orders
+              </NavLink>
+            </li>
 
-              </li>
-              <li>
-
-              <NavLink to="/wishlist" className={({ isActive }) =>
+            <li>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
                   `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
                     isActive ? "navlink-active" : "navlink-inactive"
                   }`
-                }>WishList</NavLink>
-                </li>
-              
-              <li>
-                <NavLink to="/cart" className={({ isActive }) =>
+                }
+              >
+                Contact
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/cart"
+                className={({ isActive }) =>
                   `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
                     isActive ? "navlink-active" : "navlink-inactive"
                   }`
-                }>Cart</NavLink>
-              </li>
-              <li>
-                <NavLink to="/Contact" className={({ isActive }) =>
-                  `block py-2 px-3 md:p-0 md:bg-transparent rounded ${
-                    isActive ? "navlink-active" : "navlink-inactive"
-                  }`
-                }>Contact</NavLink>
-              </li>
-              
-            </ul>
-          </div>
+                }
+              >
+                Cart
+              </NavLink>
+            </li>
+          </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
+  );
+};
 
-
-    </>
-  )
-}
-
-export default Navbar
+export default Navbar;
 
 const UserMenu = () => {
+  const { user, logout } = useAuth();
   return (
-    <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+    <div className="flex relative items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
       <button
         type="button"
         className="flex text-sm bg-neutral-primary rounded-full md:me-0 focus:ring-4 focus:ring-neutral-tertiary"
@@ -92,18 +122,21 @@ const UserMenu = () => {
         <span className="sr-only">Open user menu</span>
         <img
           className="w-8 h-8 rounded-full"
-          src="https://media.licdn.com/dms/image/v2/D5603AQF6Jg0zTVWBzQ/profile-displayphoto-scale_200_200/B56ZjazRsiH8Ac-/0/1756017532600?e=2147483647&v=beta&t=ZjjwETYcdYZ464B7MlBjEaAzoNvkmWwalikR8gYsnUE"
-          alt="user photo"
+          src={
+            user?.image ||
+            "https://cdn-icons-png.flaticon.com/512/1077/1077114.png"
+          }
+          alt={user?.name}
         />
       </button>
       {/* <!-- Dropdown menu --> */}
       <div
-        className="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
+        className="z-50 absolute top-10 bg-amber-50 -left-24 bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44"
         id="user-dropdown"
       >
         <div className="px-4 py-3 text-sm border-b border-default">
-          <span className="block text-heading font-medium">Joseph McFall</span>
-          <span className="block text-body truncate">name@flowbite.com</span>
+          <span className="block text-heading font-medium">{user?.name}</span>
+          <span className="block text-body truncate">{user?.email}</span>
         </div>
         <ul
           className="p-2 text-sm text-body font-medium"
@@ -136,9 +169,10 @@ const UserMenu = () => {
           <li>
             <NavLink
               to="/"
+              onClick={logout}
               className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded"
             >
-              Sign out
+              Logout
             </NavLink>
           </li>
         </ul>

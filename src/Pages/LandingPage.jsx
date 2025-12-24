@@ -3,6 +3,9 @@ import HomeSlider from '../Components/HomeSlider'
 import ProductCard from '../Components/ProductCard'
 import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
+import ProductGallery from '../Components/productGallery';
+import Child from '../Components/child';
+import Parents from '../Components/parents';
 
 
 // const products = [
@@ -243,80 +246,32 @@ import { ToastContainer } from 'react-toastify';
 // ];
 
 const LandingPage = () => {
-  const API_URL = import.meta.env.VITE_Products_URL;
+ 
 
-  const [products, setproducts] = useState([]);
-  const getAllProducts = async () => {
-    try{
-      const res = await axios.get(API_URL);
-      console.warn(res);
-      
-      const prods = res.data;
-      console.warn(prods);
-      setproducts(prods);
-      
-    } catch(err){
-      console.log(err.message);
-    }
-   
-
-  };
-
-  useEffect (() => {
-    getAllProducts();
-  }, []);
+  
   return (
        <>
-      {/* HERO SLIDER */}
+      
       
       <HomeSlider />
+      <ProductGallery />
+      <Parents>
+        <Child />
+         <Child />
+          <Child />
+           <Child />
+      </Parents>
+      
 
-      {/* {
-        Array.from({length: 4}, (a,i) => (
-          <>
-          <p>para {i}</p>
-          {console.log(a,i)}
-          </>
-        ))
-      } */}
+    
 
-      {/* PRODUCTS SECTION */}
-      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+       
 
-        {/* SECTION HEADER */}
-        <div className="mb-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
-            Featured Products
-          </h2>
-          <p className="mt-2 text-gray-600 dark:text-gray-300">
-            Discover our latest and most popular items
-          </p>
-        </div>
-
-        {/* PRODUCT GRID */}
-        {products.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 place-items-center">
-            {products.map((p, i) => (
-              <ProductCard
-                key={p.id}
-                product={p}
-                owner="Abhishek"
-              />
-            ))}
-          </div>
-        ) : (
-          /* EMPTY STATE */
-          <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-gray-300 py-16 text-center dark:border-gray-600">
-            <span className="text-5xl">🛒</span>
-            <h3 className="mt-4 text-xl font-semibold text-gray-800 dark:text-white">
-              No Products Available
-            </h3>
-            <p className="mt-2 text-gray-500 dark:text-gray-400">
-              Products will appear here once they are added.
-            </p>
-          </div>
-        )}
-      </section>
+      
+          
+         
+        
+      
     </>
   )
 }

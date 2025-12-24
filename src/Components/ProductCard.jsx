@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product , incrementCount}) => {
 
   const rating = product?.rating?.rate || 0;
   const totalStar = 5;
@@ -74,6 +74,7 @@ const ProductCard = ({ product }) => {
                        border border-transparent shadow-md hover:shadow-xl 
                        transition-all duration-300 rounded-lg text-sm px-4 py-2 
                        active:scale-95"
+                       onClick={()=>incrementCount(1)}
           >
             <svg
               className="w-4 h-4 mr-2"

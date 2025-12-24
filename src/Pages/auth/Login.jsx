@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import useAuth from '../../Hooks/useAuth';
 
 const initialstate ={
   email: " ",
-  password: " "
+  password: ""
 }
 
+
 const Login = () => {
+  const {login } = useAuth();
   let [formdata, setformdata] = useState(initialstate );
   const handleInpChange=(e)=>{
     console.log(e);
@@ -20,6 +23,7 @@ const Login = () => {
   const sumitHandler=(e)=>{
     e.preventDefault();
     console.log("Form Sumited data",formdata);
+    login(formdata);
     setformdata(initialstate);
     // Post API Calling
   }
